@@ -1,35 +1,71 @@
 <script setup>
-import {ref} from 'vue'
-const location  = ref('Dhaka');
+import {ref, reactive} from 'vue'
+const activeIndex = ref('0')
 
-const setLocation = function(newLocation){
-    location.value = newLocation
-}
-
-const buttonColor = ref('bg-purple-500')
+const accordions = reactive([
+    {
+        title: 'What is term?',
+        content: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi dolor dolorum odio, saepe quibusdam iusto possimus nesciunt dolores assumenda quae totam, doloremque odit. Itaque cum animi, labore debitis deserunt iusto!',
+        isOpen: 1
+    },
+    {
+        title: 'When to use Accordion Components?',
+        content: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut suscipit itaque, sequi incidunt ab sit optio debitis dignissimos doloribus ratione nobis id mollitia maiores eveniet necessitatibus dolorum praesentium! Corrupti, at.',
+        isOpen: 0
+    },
+    {
+        title: 'What is term?',
+        content: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi dolor dolorum odio, saepe quibusdam iusto possimus nesciunt dolores assumenda quae totam, doloremque odit. Itaque cum animi, labore debitis deserunt iusto!',
+        isOpen: 0
+    },
+    {
+        title: 'When to use Accordion Components?',
+        content: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut suscipit itaque, sequi incidunt ab sit optio debitis dignissimos doloribus ratione nobis id mollitia maiores eveniet necessitatibus dolorum praesentium! Corrupti, at.',
+        isOpen: 0
+    },
+    {
+        title: 'What is term?',
+        content: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi dolor dolorum odio, saepe quibusdam iusto possimus nesciunt dolores assumenda quae totam, doloremque odit. Itaque cum animi, labore debitis deserunt iusto!',
+        isOpen: 0
+    },
+    {
+        title: 'When to use Accordion Components?',
+        content: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut suscipit itaque, sequi incidunt ab sit optio debitis dignissimos doloribus ratione nobis id mollitia maiores eveniet necessitatibus dolorum praesentium! Corrupti, at.',
+        isOpen: 0
+    }
+])
 
 </script>
 
 <template>
-  <section class="container mx-auto flex items-center flex-col">
-        <h1 class="text-center text-2xl py-10">Events & Reactivity in Vue.js</h1>
-        <div class="container mx-auto flex space-x-5 justify-center m-5">
-            <button :class="buttonColor" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="setLocation('Dhaka')">
-                Dhaka
-            </button>
-            <button :class="buttonColor" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="setLocation('Rajshahi')">
-                Rajshahi
-            </button>
-            <button :class="buttonColor" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="setLocation('Khulna')">
-                Khulna
-            </button>
-        </div>
-        <h1 class="text-2xl m-10">Current Location is {{ location }}</h1>
-        <div class="mt-10 flex space-x-5 justify-center">
-            <div @click="buttonColor = 'bg-orange-500'" class="cursor-pointer w-10 h-10 bg-orange-500"></div>
-            <div @click="buttonColor = 'bg-indigo-500'" class="cursor-pointer w-10 h-10 bg-indigo-500"></div>
-            <div @click="buttonColor = 'bg-purple-500'" class="cursor-pointer w-10 h-10 bg-purple-500"></div>
-        </div>
+   <section class="container mx-auto flex items-center flex-col">
+        <h1 class="text-center text-2xl py-10">Accordion</h1>
+    
+        <div class="p-10 bg-gradient-to-br from-pink-50 to-indigo-100 grid place-items-center">
+          <div class="w-6/12 mx-auto rounded border">
+            <div class="bg-white p-10 shadow-sm">
+              <h3 class="text-lg font-medium text-gray-800">Several Windows stacked on each other</h3>
+              <p class="text-sm font-light text-gray-600 my-3">
+                The accordion is a graphical control element comprising a vertically stacked list of items such as labels or thumbnails
+              </p>
+    
+              <div class="h-1 w-full mx-auto border-b my-5"></div>
+    
+              <!-- What is term -->
+              <div class="transition hover:bg-indigo-50" v-for="(accordion, index) in accordions" :key="index">
+                <!-- header -->
+                <div @click="accordions[index].isOpen = !accordion.isOpen" class="accordion-header cursor-pointer transition flex space-x-5 px-5 items-center h-16">
+                  <i class="fas fa-plus"></i>
+                  <h3>{{ accordion.title }}</h3>
+                </div>
+                <!-- Content -->
+                <div class="px-5 pt-0 text-left pb-5" v-show="1 == accordion.isOpen">
+                  <p class="leading-6 font-light pl-9 ">{{ accordion.content }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>    
     </section>
 </template>
 
