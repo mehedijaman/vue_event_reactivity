@@ -4,7 +4,7 @@ const activeIndex = ref('0')
 
 const accordions = reactive([
     {
-        title: 'What is term?',
+        title: 'When to use Accordion Components?',
         content: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi dolor dolorum odio, saepe quibusdam iusto possimus nesciunt dolores assumenda quae totam, doloremque odit. Itaque cum animi, labore debitis deserunt iusto!',
         isOpen: 1
     },
@@ -14,7 +14,7 @@ const accordions = reactive([
         isOpen: 0
     },
     {
-        title: 'What is term?',
+        title: 'When to use Accordion Components?',
         content: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi dolor dolorum odio, saepe quibusdam iusto possimus nesciunt dolores assumenda quae totam, doloremque odit. Itaque cum animi, labore debitis deserunt iusto!',
         isOpen: 0
     },
@@ -24,7 +24,7 @@ const accordions = reactive([
         isOpen: 0
     },
     {
-        title: 'What is term?',
+        title: 'When to use Accordion Components?',
         content: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi dolor dolorum odio, saepe quibusdam iusto possimus nesciunt dolores assumenda quae totam, doloremque odit. Itaque cum animi, labore debitis deserunt iusto!',
         isOpen: 0
     },
@@ -39,7 +39,7 @@ const accordions = reactive([
 
 <template>
    <section class="container mx-auto flex items-center flex-col">
-        <h1 class="text-center text-2xl py-10">Accordion</h1>
+        <h1 class="text-center text-2xl py-10">Vue Accordion</h1>
     
         <div class="p-10 bg-gradient-to-br from-pink-50 to-indigo-100 grid place-items-center">
           <div class="w-6/12 mx-auto rounded border">
@@ -54,12 +54,12 @@ const accordions = reactive([
               <!-- What is term -->
               <div class="transition hover:bg-indigo-50" v-for="(accordion, index) in accordions" :key="index">
                 <!-- header -->
-                <div @click="accordions[index].isOpen = !accordion.isOpen" class="accordion-header cursor-pointer transition flex space-x-5 px-5 items-center h-16">
-                  <i class="fas fa-plus"></i>
+                <div @click="activeIndex = index" class="accordion-header cursor-pointer transition flex space-x-5 px-5 items-center h-16">
+                  <i class="fas" :class="index == activeIndex?'fa-minus':'fa-plus'"></i>
                   <h3>{{ accordion.title }}</h3>
                 </div>
                 <!-- Content -->
-                <div class="px-5 pt-0 text-left pb-5" v-show="1 == accordion.isOpen">
+                <div class="px-5 pt-0 text-left pb-5" v-show="index == activeIndex">
                   <p class="leading-6 font-light pl-9 ">{{ accordion.content }}</p>
                 </div>
               </div>
