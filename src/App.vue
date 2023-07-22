@@ -1,71 +1,48 @@
 <script setup>
 import {ref, reactive} from 'vue'
-const activeIndex = ref('0')
 
-const accordions = reactive([
+const onIcon = '//img.icons8.com/?size=512&id=12244&format=png'
+const offIcon = '//img.icons8.com/?size=512&id=75&format=png'
+
+const lights = reactive([
     {
-        title: 'When to use Accordion Components?',
-        content: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi dolor dolorum odio, saepe quibusdam iusto possimus nesciunt dolores assumenda quae totam, doloremque odit. Itaque cum animi, labore debitis deserunt iusto!',
-        isOpen: 1
+        name: 'Light 1',
+        status: 0,
+        offIcon: offIcon,
+        onIcon: onIcon
     },
     {
-        title: 'When to use Accordion Components?',
-        content: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut suscipit itaque, sequi incidunt ab sit optio debitis dignissimos doloribus ratione nobis id mollitia maiores eveniet necessitatibus dolorum praesentium! Corrupti, at.',
-        isOpen: 0
+        name: 'Light 2',
+        status: 0,
+        offIcon: offIcon,
+        onIcon: onIcon
     },
     {
-        title: 'When to use Accordion Components?',
-        content: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi dolor dolorum odio, saepe quibusdam iusto possimus nesciunt dolores assumenda quae totam, doloremque odit. Itaque cum animi, labore debitis deserunt iusto!',
-        isOpen: 0
-    },
-    {
-        title: 'When to use Accordion Components?',
-        content: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut suscipit itaque, sequi incidunt ab sit optio debitis dignissimos doloribus ratione nobis id mollitia maiores eveniet necessitatibus dolorum praesentium! Corrupti, at.',
-        isOpen: 0
-    },
-    {
-        title: 'When to use Accordion Components?',
-        content: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi dolor dolorum odio, saepe quibusdam iusto possimus nesciunt dolores assumenda quae totam, doloremque odit. Itaque cum animi, labore debitis deserunt iusto!',
-        isOpen: 0
-    },
-    {
-        title: 'When to use Accordion Components?',
-        content: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut suscipit itaque, sequi incidunt ab sit optio debitis dignissimos doloribus ratione nobis id mollitia maiores eveniet necessitatibus dolorum praesentium! Corrupti, at.',
-        isOpen: 0
+        name: 'Light 3',
+        status: 0,
+        offIcon: offIcon,
+        onIcon: onIcon
     }
 ])
 
+const bgBlue = 'bg-blue-700'
+const bgGray = 'bg-gray-700'
 </script>
 
 <template>
-   <section class="container mx-auto flex items-center flex-col">
-        <h1 class="text-center text-2xl py-10">Vue Accordion</h1>
-    
-        <div class="p-10 bg-gradient-to-br from-pink-50 to-indigo-100 grid place-items-center">
-          <div class="w-6/12 mx-auto rounded border">
-            <div class="bg-white p-10 shadow-sm">
-              <h3 class="text-lg font-medium text-gray-800">Several Windows stacked on each other</h3>
-              <p class="text-sm font-light text-gray-600 my-3">
-                The accordion is a graphical control element comprising a vertically stacked list of items such as labels or thumbnails
-              </p>
-    
-              <div class="h-1 w-full mx-auto border-b my-5"></div>
-    
-              <!-- What is term -->
-              <div class="transition hover:bg-indigo-50" v-for="(accordion, index) in accordions" :key="index">
-                <!-- header -->
-                <div @click="activeIndex = index" class="accordion-header cursor-pointer transition flex space-x-5 px-5 items-center h-16">
-                  <i class="fas" :class="index == activeIndex?'fa-minus':'fa-plus'"></i>
-                  <h3>{{ accordion.title }}</h3>
-                </div>
-                <!-- Content -->
-                <div class="px-5 pt-0 text-left pb-5" v-show="index == activeIndex">
-                  <p class="leading-6 font-light pl-9 ">{{ accordion.content }}</p>
-                </div>
-              </div>
+    <section class="container mx-auto flex items-center flex-col">
+        <h1 class="text-center text-2xl py-10">Assignment</h1>
+        <p class="p-5">Make These Buttons Work</p>
+        <div class="flex justify-between space-x-6">
+            <div class="p-10 border w-96 flex flex-col space-y-5">
+                <button @click="light.status = !light.status" v-for="(light,index) in lights" :key="index" :class="light.status?bgBlue:bgGray" class="hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                   {{ light.name }} {{ light.status?'ON':'OFF' }}
+                </button>
             </div>
-          </div>
-        </div>    
+            <div class="p-10 border w-96 flex flex-col space-y-5">
+                <img v-for="(light,index) in lights" :key="index" class="w-12" :src="light.status?light.onIcon:light.offIcon" alt="">
+            </div>
+        </div>
     </section>
 </template>
 
