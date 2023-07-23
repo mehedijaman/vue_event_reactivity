@@ -1,22 +1,41 @@
 <script setup>
+import {ref} from 'vue'
+import SimpleCounter from './components/SimpleCounter.vue'
+import DistrictChanger from './components/DistrictChanger.vue'
+import Accordion from './components/Accordion.vue'
+import LightSwitch from './components/LightSwitch.vue'
+
+let componentName = ref('')
 </script>
 
 <template>
-  <section class="container mx-auto flex items-center flex-col">
-        <h1 class="text-center text-2xl py-10">Events & Reactivity in Vue.js</h1>
-        <div class="container mx-auto flex space-x-5 justify-center m-5">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                Dhaka
-            </button>
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                Rajshahi
-            </button>
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                Khulna
-            </button>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Vue Reactivity & Events</a>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a @click="componentName = 'SimpleCounter'" class="nav-link" :class="SimpleCounter == componentName?'active':''"  href="#">SimpleCounter</a>
+                <a @click="componentName = 'DistrictChanger'" class="nav-link" :class="DistrictChanger == componentName?'active':''" href="#">DistrictChanger</a>
+                <a @click="componentName = 'Accordion'" class="nav-link" :class="Accordion == componentName?'active':''" href="#">Accordion</a>
+                <a @click="componentName = 'LightSwitch'" class="nav-link" :class="LightSwitch == componentName?'active':''" href="#">Light Switch</a>
+            </div>
+            </div>
         </div>
-        <h1 class="text-2xl m-10">Current Location is </h1>
-    </section>
+    </nav>
+    <div v-if="'SimpleCounter' == componentName">
+        <SimpleCounter/>
+    </div>
+    <div v-if="'DistrictChanger' == componentName">
+        <DistrictChanger/>
+    </div>
+
+    <div v-if="'Accordion' == componentName">
+        <Accordion/>
+    </div>
+
+    <div v-if="'LightSwitch' == componentName">
+        <LightSwitch/>
+    </div>
 </template>
 
 <style scoped></style>
