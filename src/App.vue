@@ -4,6 +4,7 @@ import SimpleCounter from './components/SimpleCounter.vue'
 import DistrictChanger from './components/DistrictChanger.vue'
 import Accordion from './components/Accordion.vue'
 import LightSwitch from './components/LightSwitch.vue'
+import VForArrayComponent from './components/VForArrayComponent.vue'
 
 let componentName = ref('')
 </script>
@@ -36,6 +37,7 @@ let componentName = ref('')
     <div v-if="'LightSwitch' == componentName">
         <LightSwitch/>
     </div>
+    <!-- <VForArrayComponent/> -->
 </template>
 
 <style scoped></style>
